@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sokak Kısıtlaması</string>
+    <string name="string_yasak">YASAK</string>
+    <string name="string_serbest">SERBEST</string>
+</resources>
