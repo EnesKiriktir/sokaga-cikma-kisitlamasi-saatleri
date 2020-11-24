@@ -19,7 +19,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class MainActivity extends AppCompatActivity {
 
      EditText edt;
-    Button btn;
+     Button btn;
      TextView sonuc;
      GifImageView gif;
     @Override
@@ -34,74 +34,82 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int yas = yasHesapla(Integer.parseInt(edt.getText().toString()));
-                int saat = currentHour();
-                boolean haftasonuMu = haftaSonu();
-                if(yas<20){
-                    if(saat>=13 && saat<16){
-                        sonuc.setText(R.string.string_serbest);
-                        gif.setImageResource(R.drawable.maske_tak);
-                        gif.setVisibility(View.VISIBLE);
-                        Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        sonuc.setText(R.string.string_yasak);
-                        gif.setImageResource(R.drawable.evde_kal);
-                        gif.setVisibility(View.VISIBLE);
-                        Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                else if(yas >=20 && yas<65){
-
-                    if(haftasonuMu){
-                        if(saat<10 && saat>=20){
-                            sonuc.setText(R.string.string_yasak);
-                            gif.setImageResource(R.drawable.evde_kal);
-                            gif.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            sonuc.setText(R.string.string_serbest);
-                            gif.setImageResource(R.drawable.maske_tak);
-                            gif.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                    else{
-                        edt.setText(String.valueOf(saat));
-                        if (saat<5 && currentDay()==1){
-                            sonuc.setText(R.string.string_yasak);
-                            gif.setImageResource(R.drawable.evde_kal);
-                            gif.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            sonuc.setText(R.string.string_serbest);
-                            gif.setImageResource(R.drawable.maske_tak);
-                            gif.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-
+                if(edt.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this, "Doğum tarihi alanı boş bırakılamaz!", Toast.LENGTH_SHORT).show();
+                    sonuc.setText("");
+                    gif.setVisibility(View.INVISIBLE);
                 }
                 else{
-                    if(saat>=10 && saat<13){
-                        sonuc.setText(R.string.string_serbest);
-                        gif.setImageResource(R.drawable.maske_tak);
-                        gif.setVisibility(View.VISIBLE);
-                        Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
+                    int yas = yasHesapla(Integer.parseInt(edt.getText().toString()));
+                    int saat = currentHour();
+                    boolean haftasonuMu = haftaSonu();
+                    if(yas<20){
+                        if(saat>=13 && saat<16){
+                            sonuc.setText(R.string.string_serbest);
+                            gif.setImageResource(R.drawable.maske_tak);
+                            gif.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            sonuc.setText(R.string.string_yasak);
+                            gif.setImageResource(R.drawable.evde_kal);
+                            gif.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                    else if(yas >=20 && yas<65){
+
+                        if(haftasonuMu){
+                            if(saat<10 && saat>=20){
+                                sonuc.setText(R.string.string_yasak);
+                                gif.setImageResource(R.drawable.evde_kal);
+                                gif.setVisibility(View.VISIBLE);
+                                Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                sonuc.setText(R.string.string_serbest);
+                                gif.setImageResource(R.drawable.maske_tak);
+                                gif.setVisibility(View.VISIBLE);
+                                Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        else{
+
+                            if (saat<5 && currentDay()==1){
+                                sonuc.setText(R.string.string_yasak);
+                                gif.setImageResource(R.drawable.evde_kal);
+                                gif.setVisibility(View.VISIBLE);
+                                Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                sonuc.setText(R.string.string_serbest);
+                                gif.setImageResource(R.drawable.maske_tak);
+                                gif.setVisibility(View.VISIBLE);
+                                Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
                     }
                     else{
-                        sonuc.setText(R.string.string_yasak);
-                        gif.setImageResource(R.drawable.evde_kal);
-                        gif.setVisibility(View.VISIBLE);
-                        Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
-                    }
+                        if(saat>=10 && saat<13){
+                            sonuc.setText(R.string.string_serbest);
+                            gif.setImageResource(R.drawable.maske_tak);
+                            gif.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Maske Takmayı İhmal Etmeyin!", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            sonuc.setText(R.string.string_yasak);
+                            gif.setImageResource(R.drawable.evde_kal);
+                            gif.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Evde Kalın, Güvende Kalın", Toast.LENGTH_SHORT).show();
+                        }
 
+                    }
                 }
+
 
             }
         });
