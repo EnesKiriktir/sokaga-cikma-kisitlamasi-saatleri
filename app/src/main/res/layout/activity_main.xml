@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:ems="4"
+        android:maxLength="4"
         android:hint="Doğum yılınızı girin"
         android:inputType="number"
         android:layout_marginLeft="20dp"
